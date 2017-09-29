@@ -1,0 +1,8 @@
+/*use built in angular classes to validate form*/
+.ng-invalid.ng-dirty {
+    border-color: #FA787E;
+}
+
+.ng-valid.ng-dirty {
+    border-color: #78FA89;
+}
