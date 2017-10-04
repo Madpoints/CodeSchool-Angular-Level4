@@ -4,17 +4,7 @@
     app.controller('StoreController', function() {
         this.products = gems;    
     });
-    // controller for the panels
-    app.controller('PanelController', function() {
-        this.tab = 1;
-        
-        this.selectTab = function(setTab) {
-            this.tab = setTab;
-        };
-        this.isSelected = function(checkTab){
-            return this.tab === checkTab;
-        };
-    });
+     
     //controller for review form
     app.controller('ReviewController', function() {
         this.review = {};
@@ -32,6 +22,27 @@
         restrict: 'E',
         //template URL
         templateUrl: 'product-title.html'
+       }; 
+    });
+    // custom directive 
+    app.directive('productPanels', function() {
+       return {
+           restrict: 'E',
+           templateUrl: 'product-panels.html',
+           // panel controller inside directive 
+           controller:function() {
+                this.tab = 1;
+                
+                this.selectTab = function(setTab) {
+                    this.tab = setTab;
+                };
+                this.isSelected = function(checkTab){
+                    return this.tab === checkTab;
+                };
+            },
+            // sets controller alias
+            controllerAs: 'panel'
+           
        }; 
     });
     // Gems as an array of objects

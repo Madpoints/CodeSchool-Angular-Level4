@@ -1,0 +1,51 @@
+<section>
+    <ul class="nav nav-pills">
+        <li ng-class="{active: panel.isSelected(1)}">
+            <a href ng-click="panel.selectTab(1)">Description</a>
+        </li>
+        <li ng-class="{active: panel.isSelected(2)">
+            <a href ng-click="panel.selectTab(2)">Specifications</a>
+        </li>
+        <li ng-class="{active: panel.isSelected(3)}">
+            <a href ng-click="panel.selectTab(3)">Reviews</a>
+        </li>
+    </ul>
+    <div class="panel" ng-show="panel.isSelected(1)">
+        <h4>Description</h4>
+        <p>{{product.description}}</p>
+    </div>
+    <div class="panel" ng-show="panel.isSelected(2)">
+        <h4>Specifications</h4>
+        <blockquote>None yet</blockquote>
+    </div>
+    <div class="panel" ng-show="panel.isSelected(3)">
+        
+        <h4>Reviews</h4>
+        <blockquote ng-repeat="review in product.reviews">
+            <b>{{review.stars}} Star(s)</b><br>
+            {{review.body}}<br>
+            <cite>-{{review.author}} on {{review.createdOn | date :  "MM.dd.y" }}</cite>
+        </blockquote>
+        
+        <h4>Submit a Review</h4>
+        <form name="reviewForm" class="form-group" ng-controller="ReviewController as reviewCtrl" 
+            ng-submit="reviewForm.$valid && reviewCtrl.addReview(product)" novalidate>
+            <!--ng-model binds form element value to the property-->
+            <!--display review as user fills out form-->
+            <blockquote>
+                <b>{{reviewCtrl.review.stars}} Stars(s)</b><br>
+                {{review.body}}<br>
+                <cite>-{{reviewCtrl.review.author}}</cite>
+            </blockquote>
+            <!--ng-options populates select option element-->
+            <select ng-model="reviewCtrl.review.stars" class="form-control" ng-options="stars for stars in [5,4,3,2,1]" required>
+                <option value="">Rate this Product</option>
+            </select><br>
+            <textarea ng-model="reviewCtrl.review.body" class="form-control" placeholder="Write a short review of the product..." required></textarea>
+            <label>by:</label>
+            <input ng-model="reviewCtrl.review.author" type="email" class="form-control" placeholder="yourEmail@example.org" required/>
+            <div>reviewForm is {{reviewForm.$valid}}</div>
+            <input class="btn" type="submit" value="Submit"/>
+        </form>
+    </div>
+</section>
