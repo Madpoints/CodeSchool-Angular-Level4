@@ -32,12 +32,23 @@
            // panel controller inside directive 
            controller:function() {
                 this.tab = 1;
+                this.review = 0;
                 
                 this.selectTab = function(setTab) {
                     this.tab = setTab;
                 };
                 this.isSelected = function(checkTab){
                     return this.tab === checkTab;
+                };
+                // shows review form
+                this.showReview = function(setReview) {
+                    if (this.review === 1) {
+                        setReview = 0;
+                    }
+                    this.review = setReview;
+                };
+                this.showingReview = function(checkReview) {
+                    return this.review === checkReview;
                 };
             },
             // sets controller alias

@@ -27,9 +27,9 @@
             <cite>-{{review.author}} on {{review.createdOn | date :  "MM.dd.y" }}</cite>
         </blockquote>
         
-        <h4>Submit a Review</h4>
+        <h4 ng-click="panel.showReview(1)">Submit a Review</h4>
         <form name="reviewForm" class="form-group" ng-controller="ReviewController as reviewCtrl" 
-            ng-submit="reviewForm.$valid && reviewCtrl.addReview(product)" novalidate>
+            ng-submit="reviewForm.$valid && reviewCtrl.addReview(product)" ng-show="panel.showingReview(1)" novalidate>
             <!--ng-model binds form element value to the property-->
             <!--display review as user fills out form-->
             <blockquote>
